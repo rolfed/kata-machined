@@ -2,7 +2,7 @@ export default function binary_search_recursive(
     list: Array<number>, 
     target: number,
     lo: number = 0, 
-        hi: number = list.length - 1
+    hi: number = list.length - 1
 ): boolean {
     if (lo > hi) {
         return false; // base case: target not found
