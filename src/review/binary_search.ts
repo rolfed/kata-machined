@@ -5,8 +5,7 @@ export default function binary_search(list: Array<number>, target: number): bool
     do {
         let midway = Math.floor(lo + (hi - lo) / 2);
         const value = list[midway];
-
-        console.log(`Lo: ${lo}, Hi: ${hi}, Midway: ${midway}, Value: ${value}`);
+        // console.log(`Lo: ${lo}, Hi: ${hi}, Midway: ${midway}, Value: ${value}`);
 
         if (value === target) {
             return true
