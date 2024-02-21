@@ -4,12 +4,12 @@ export default function binary_search(list: Array<number>, target: number): bool
 
     do {
         let midway = Math.floor(lo + (hi - lo) / 2);
-        const value = list[midway];
+        const testValue = list[midway]; // testValue changes
         // target was found
-        if (value === target) {
+        if (testValue === target) {
             return true;
             // lo is bigger than midway
-        } else if (value > target) { 
+        } else if (testValue > target) { 
             hi = midway;
         } else {
             lo = midway + 1;
