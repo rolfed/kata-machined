@@ -24,9 +24,9 @@ function searchInsert(nums: number[], target: number): number {
     let hi = nums.length; // exclusive
     let location = -1; // not found
     let midway = Math.floor(lo + (hi - lo) / 2);
+    let value = nums[midway];
 
     do {
-        let value = nums[midway];
         if (target === value) {
             location = nums.indexOf(value);
         } else if (value > target) { // right side
@@ -35,23 +35,27 @@ function searchInsert(nums: number[], target: number): number {
             hi = midway;
         } 
 
-        if (location === -1) {
-            // bigger than last index
-            if (target > nums[nums.length - 1]) {
-                location = nums.length;
-                console.log('last: ', location);
-            } else {
-                midway = Math.floor(lo + (hi - lo) / 2);
-                value = nums[midway];
-                lo = 0;
-                hi = nums.length;
-                location = 0;
+    } while (lo > hi);
+    
+    if (location === -1) {
+        if (target >= nums[nums.length - 1]) {
+            location = nums.length;
+        } else {
+            for (let i = 0; i < nums.length; ++i) {
+                if (target >= nums[i]) {
+                    location = i + 1;
+                    break;
+                } 
+
             }
         }
-    } while (lo > hi && location === -1);
 
+    }
+
+    console.log('location final: ', location);
     return location;
 }
+
 
 function oneTestSearchInsert(): boolean {
     const actualResult = searchInsert([0, 3, 5, 6], 5);
@@ -71,8 +75,15 @@ function threeTestSearchInsert(): boolean {
     return actualResult === expectedResult
 };
 
+function fourTestSearchInsert(): boolean {
+    const actualResult = searchInsert([0, 3, 5, 6], 6);
+    const expectedResult = 4;
+    return actualResult === expectedResult
+};
+
 console.log(
 oneTestSearchInsert(),
 twoTestSearchInsert(),
-threeTestSearchInsert()
+threeTestSearchInsert(),
+fourTestSearchInsert()
 );
